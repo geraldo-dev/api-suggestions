@@ -1,15 +1,16 @@
-import Fastify from "fastify";
+const Fastify = require("fastify");
+const sugestions = require("./suggestions/controlles");
 
-const app = Fastify();
+async function  start () {
+        
+    const app = Fastify({ logger: true });
 
-app.get('/', (req, res)=>{
-    res.send({ hello: 'world' });
-});
 
-app.listen({ port:3000}, (err)=>{
-    if(err){
-        console.log(err);
-    }else{
-        console.log('http://localhost:3000/')
-    }
-});
+    // app.register(require("./routes"));
+    app.register(sugestions);
+
+    app.listen({ port:3000}).then(()=> console.log('server...'));
+}
+
+
+start();
