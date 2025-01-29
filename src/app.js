@@ -8,7 +8,7 @@ async function  start () {
     
     app.use(express.json());
     app.use(cors());
-    app.use(routes);
+    app.use('/sugesstion', routes);
 
     app.listen(3000, (err)=>{
         if(err) console.log(err);
