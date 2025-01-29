@@ -1,14 +1,20 @@
-const Fastify = require("fastify");
-const sugestions = require("./suggestions/controlles");
+const express = require("express");
+const cors = require('cors');
+const routes = require("./routes");
 
 async function  start () {
         
-    const app = Fastify({ logger: true });
+    const app = express();
+    
+    app.use(express.json());
+    app.use(cors());
+    app.use(routes);
 
-    //routes
-    app.register(sugestions,{ prefix : '/suggestion' });
+    app.listen(3000, (err)=>{
+        if(err) console.log(err);
 
-    app.listen({ port:3000}).then(()=> console.log('server...'));
+        console.log('http://localhost:3000');
+    });
 }
 
 
