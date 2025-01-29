@@ -5,9 +5,8 @@ async function  start () {
         
     const app = Fastify({ logger: true });
 
-
-    // app.register(require("./routes"));
-    app.register(sugestions);
+    //routes
+    app.register(sugestions,{ prefix : '/suggestion' });
 
     app.listen({ port:3000}).then(()=> console.log('server...'));
 }
