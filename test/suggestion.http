@@ -1,0 +1,19 @@
+GET  http://localhost:3000/suggestion/
+
+###
+
+GET  http://localhost:3000/suggestion?username=geraldo
+
+###
+
+GET  http://localhost:3000/suggestion/32
+
+###
+
+POST  http://localhost:3000/suggestion
+###
+
+PUT  http://localhost:3000/suggestion/2
+###
+
+DELETE  http://localhost:3000/suggestion/3
