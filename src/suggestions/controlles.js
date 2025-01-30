@@ -11,9 +11,19 @@ exports.getAll = async (req, res)=>{
         }
     };
 
-exports.getId = (req, res)=>{
-        return res.status(200).send({ getId: `${req.params.id}` });
-    };
+exports.getId = async (req, res)=>{
+
+    try {
+        console.log( req.params.id)
+        //vericar se existe
+        const suggestion = await Suggestion.findById( req.params.id );
+        console.log(suggestion);
+        return res.status(200).json({ getId: suggestion });
+        
+    } catch (error) {
+        return res.send({ error: error });
+    }
+};
 
 exports.created = async (req, res)=>{
     try {

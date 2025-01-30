@@ -11,6 +11,18 @@ class Suggestion {
     static async findAll() {
         return conn('suggestions').select('*');
       }
+
+    static async findById(id) {
+        return conn('suggestions').where({ id }).first();
+      }
+
+    // static async findAll() {
+    //     return conn('suggestions').select('*');
+    //   }
+
+    // static async findAll() {
+    //     return conn('suggestions').select('*');
+    //   }
 }
 
 module.exports = Suggestion;
