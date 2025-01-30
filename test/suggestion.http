@@ -11,6 +11,11 @@ GET  http://localhost:3000/suggestion/32
 ###
 
 POST  http://localhost:3000/suggestion
+content-type: application/json
+
+{
+    "text": "estuda edição de videos"
+}
 ###
 
 PUT  http://localhost:3000/suggestion/2
