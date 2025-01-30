@@ -14,11 +14,16 @@ exports.getAll = async (req, res)=>{
 exports.getId = async (req, res)=>{
 
     try {
-        console.log( req.params.id)
-        //vericar se existe
+     
         const suggestion = await Suggestion.findById( req.params.id );
-        console.log(suggestion);
-        return res.status(200).json({ getId: suggestion });
+
+        if(suggestion){
+            
+            return res.status(200).json({ getId: suggestion });
+        }else{
+
+            return res.status(404).json({ msg: 'not found' });
+        }
         
     } catch (error) {
         return res.send({ error: error });
@@ -28,6 +33,7 @@ exports.getId = async (req, res)=>{
 exports.created = async (req, res)=>{
     try {
         const { text } = req.body;
+        //verica se todos os campos estao preencidos
         console.log(text);
 
         await Suggestion.create(text);
@@ -38,8 +44,29 @@ exports.created = async (req, res)=>{
     }
 };
 
-exports.update = (req, res)=>{
-        return res.status(200).send({ update: `atualizado` });
+exports.update = async (req, res)=>{
+    try {
+        
+        const { text } = req.body;
+        const { id } = req.params;
+
+        const findSuggestion = await Suggestion.findById(id);
+        
+        if(findSuggestion){
+
+            await Suggestion.updateText(id, text);
+
+            return res.status(200).json({ getId: 'atualizado com sucesso' });
+        }else{
+
+            return res.status(404).json({ msg: 'not found' });
+        }
+
+
+    } catch (error) {
+        
+        return res.status(500).send({ erro : error });
+    }
     };
 
 exports.destroy = (req, res)=>{

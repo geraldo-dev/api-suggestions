@@ -16,9 +16,9 @@ class Suggestion {
         return conn('suggestions').where({ id }).first();
       }
 
-    // static async findAll() {
-    //     return conn('suggestions').select('*');
-    //   }
+    static async updateText(id, text ) {
+        return conn('suggestions').where({ id }).update({ text });
+      }
 
     // static async findAll() {
     //     return conn('suggestions').select('*');

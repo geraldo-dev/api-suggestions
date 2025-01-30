@@ -6,7 +6,7 @@ GET  http://localhost:3000/suggestion?username=geraldo
 
 ###
 
-GET  http://localhost:3000/suggestion/2
+GET  http://localhost:3000/suggestion/1
 
 ###
 
@@ -18,7 +18,15 @@ content-type: application/json
 }
 ###
 
-PUT  http://localhost:3000/suggestion/2
+PUT  http://localhost:3000/suggestion/11
+content-type: application/json
+
+{
+    "text": " videos aterado"
+}
+
+
+
 ###
 
 DELETE  http://localhost:3000/suggestion/3
