@@ -14,8 +14,9 @@ exports.getAll = async (req, res)=>{
 exports.getId = async (req, res)=>{
 
     try {
+        const { id } = req.params;
      
-        const suggestion = await Suggestion.findById( req.params.id );
+        const suggestion = await Suggestion.findById( id );
 
         if(suggestion){
             
@@ -69,6 +70,21 @@ exports.update = async (req, res)=>{
     }
     };
 
-exports.destroy = (req, res)=>{
-        return res.status(200).send({ detele: `deletado` });
+exports.destroy = async (req, res)=>{
+    try {
+        const { id } = req.params;
+        const suggestion = await Suggestion.findById( id );
+
+        if(suggestion){
+            await Suggestion.delete(id)
+            
+            return res.status(200).json({ msg: 'deletado com sucesso' });
+        }else{
+
+            return res.status(404).json({ msg: 'not found' });
+        }
+        
+    } catch (error) {
+        return res.send({ error: error });
+    }
     };

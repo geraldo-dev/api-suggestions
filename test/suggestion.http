@@ -18,11 +18,11 @@ content-type: application/json
 }
 ###
 
-PUT  http://localhost:3000/suggestion/11
+PUT  http://localhost:3000/suggestion/3
 content-type: application/json
 
 {
-    "text": " videos aterado"
+    "text": " deletar"
 }
 
 
